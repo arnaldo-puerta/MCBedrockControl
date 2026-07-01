@@ -4,7 +4,6 @@
 
 ![GitHub release](https://img.shields.io/github/v/release/arnaldo-puerta/MCBedrockControl)
 ![GitHub Downloads](https://img.shields.io/github/downloads/arnaldo-puerta/MCBedrockControl/total)
-![License](https://img.shields.io/github/LICENSE/arnaldo-puerta/MCBedrockControl)
 
 <img src="app/resources/images/logo.png" width="120">
 
