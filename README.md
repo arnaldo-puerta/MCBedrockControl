@@ -2,16 +2,20 @@
 
 <div align="center">
 
-![GitHub release](https://img.shields.io/github/v/release/arnaldo-puerta/MCBedrockControl)
-![GitHub Downloads](https://img.shields.io/github/downloads/arnaldo-puerta/MCBedrockControl/total)
-
 <img src="app/resources/images/logo.png" width="120">
 
 ### Administrador gráfico para servidores dedicados de Minecraft Bedrock Edition.
 
+![GitHub release](https://img.shields.io/github/v/release/arnaldo-puerta/MCBedrockControl)
+
+![GitHub Downloads](https://img.shields.io/github/downloads/arnaldo-puerta/MCBedrockControl/total)
+
 ![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
+
 ![PySide6](https://img.shields.io/badge/PySide6-Qt-green)
+
 ![Windows](https://img.shields.io/badge/Windows-10%2F11-blue)
+
 ![Version](https://img.shields.io/badge/Version-v1.0.0-success)
 
 </div>
