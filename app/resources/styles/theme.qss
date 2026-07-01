@@ -1,0 +1,891 @@
+/* =============================================
+   MCBedrockControl — Minecraft-inspired Theme
+   =============================================
+   Shared object names used across all pages:
+
+   Buttons:     btnPrimary  btnDanger  btnSecondary  btnWarning  btnConfirm
+   Cards:       card  cardHighlight  banner
+   Sections:    sectionTitle  pageTitle  pageSubtitle  pageHeader
+   Fields:      fieldLabel  fieldValue  fieldIcon
+   Tables:      dataTable  tableEmpty
+   Empty:       emptyLabel
+   Toggles:     toggleSwitch
+   Toolbars:    toolbar
+   Badges:      statusDot  statusText
+   Progress:    progressBar
+
+   Minecraft color palette:
+     Grass green  #5B8731   — positive / primary
+     Emerald      #17B169   — confirm / success
+     Redstone     #C0392B   — danger / stop / delete
+     Gold         #F4A426   — warning / caution
+     Diamond      #2DC1D9   — info / accent
+     Portal       #8B4CCD   — special elements
+     Deepslate    #1a1a1a   — main background
+     Stone        #2a2a2a   — cards / borders
+     Obsidian     #141414   — sidebar background
+   ============================================= */
+
+/* ── Resets ──────────────────────────────────────── */
+
+QMainWindow {
+    background-color: #1a1a1a;
+}
+
+QWidget {
+    background-color: #1a1a1a;
+    color: #d0d0d0;
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    font-size: 13px;
+}
+
+QLabel { background-color: transparent; }
+QCheckBox { background-color: transparent; }
+QFrame { background-color: transparent; }
+QScrollArea { border: none; background-color: transparent; }
+
+/* ── Page header (icon + title + subtitle) ──────── */
+
+#pageTitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#pageSubtitle {
+    font-size: 12px;
+    color: #888888;
+}
+
+#pageTitleIcon {
+    min-width: 50px;
+    min-height: 50px;
+}
+
+/* ── Toolbar ─────────────────────────────────────── */
+
+#toolbar {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* ── Shared Buttons ──────────────────────────────── */
+
+#btnPrimary, #btnDanger, #btnSecondary, #btnWarning, #btnConfirm {
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    min-height: 30px;
+}
+
+/* Primary — Grass green (start, save, import, add, send) */
+#btnPrimary {
+    background-color: #3d6b2a;
+    color: #d8f0c8;
+    border: 1px solid #5b8731;
+}
+#btnPrimary:hover {
+    background-color: #4d7b3a;
+    border-color: #7ba751;
+}
+#btnPrimary:disabled {
+    background-color: #222222;
+    color: #555555;
+    border-color: #2a2a2a;
+}
+#btnPrimary:pressed {
+    background-color: #2d5b1a;
+}
+
+/* Danger — Redstone (stop, delete, remove, revert) */
+#btnDanger {
+    background-color: #4a1a1a;
+    color: #e88;
+    border: 1px solid #8b2a2a;
+}
+#btnDanger:hover {
+    background-color: #5a2a2a;
+    border-color: #c0392b;
+}
+#btnDanger:disabled {
+    background-color: #222222;
+    color: #555555;
+    border-color: #2a2a2a;
+}
+#btnDanger:pressed {
+    background-color: #3a1010;
+}
+
+/* Secondary — Stone (reload, export, cancel, browse) */
+#btnSecondary {
+    background-color: #2a2a2a;
+    color: #d0d0d0;
+    border: 1px solid #3a3a3a;
+}
+#btnSecondary:hover {
+    background-color: #333333;
+    border-color: #5b8731;
+}
+#btnSecondary:disabled {
+    background-color: #1a1a1a;
+    color: #444444;
+    border-color: #222222;
+}
+#btnSecondary:pressed {
+    background-color: #222222;
+}
+
+/* Warning — Gold (restart, caution) */
+#btnWarning {
+    background-color: #3a2a1a;
+    color: #f4a426;
+    border: 1px solid #5a3a1a;
+}
+#btnWarning:hover {
+    background-color: #4a3a2a;
+    border-color: #f4a426;
+}
+#btnWarning:disabled {
+    background-color: #1a1a1a;
+    color: #444444;
+    border-color: #222222;
+}
+#btnWarning:pressed {
+    background-color: #2a1a0a;
+}
+
+/* Confirm — Emerald (dialog confirm) */
+#btnConfirm {
+    background-color: #1a4a2a;
+    color: #a0e8b0;
+    border: 1px solid #17b169;
+}
+#btnConfirm:hover {
+    background-color: #2a5a3a;
+    border-color: #2ad189;
+}
+#btnConfirm:disabled {
+    background-color: #222222;
+    color: #555555;
+    border-color: #2a2a2a;
+}
+
+/* ── Shared Cards ────────────────────────────────── */
+
+#card {
+    background-color: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+}
+
+#cardHighlight {
+    background-color: #1e1e1e;
+    border: 1px solid #3a3a3a;
+    border-radius: 12px;
+}
+
+/* ── Section titles (inside cards) ───────────────── */
+
+#sectionTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #d0d0d0;
+}
+
+/* ── Info fields (label + value pairs) ───────────── */
+
+#fieldIcon {
+    background-color: transparent;
+    font-size: 16px;
+    color: #aaaaaa;
+}
+
+#fieldLabel {
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888888;
+}
+
+#fieldValue {
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+/* ── Status badge — circular colored dot ─────────── */
+
+#statusDot {
+    border-radius: 7px;
+    border: 2px solid #1a1a1a;
+}
+
+#statusText {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#uptimeValue {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#uptimeFrame {
+    background-color: transparent;
+    padding: 0;
+}
+
+#quickInfoValue {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#activityContent {
+    background-color: transparent;
+}
+
+#activityItem {
+    font-size: 11px;
+    color: #aaaaaa;
+    padding: 2px 0;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+}
+
+/* ── Data Tables ─────────────────────────────────── */
+
+#dataTable {
+    background-color: #141414;
+    color: #d0d0d0;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    gridline-color: #222222;
+    font-size: 12px;
+}
+
+#dataTable::item {
+    padding: 7px 10px;
+    border: none;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+#dataTable::item:selected {
+    background-color: #2a4a2a;
+    color: #d8f0c8;
+}
+
+#dataTable::item:hover {
+    background-color: #1e1e1e;
+}
+
+#dataTable QHeaderView::section {
+    background-color: #1a1a1a;
+    color: #aaaaaa;
+    border: none;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Alternating row colors */
+#dataTable::item:alternate {
+    background-color: #181818;
+}
+
+/* ── Empty state ─────────────────────────────────── */
+
+#emptyLabel, #tableEmpty {
+    font-size: 12px;
+    color: #666666;
+}
+
+/* ── Toggle Switch ───────────────────────────────── */
+
+#toggleSwitch {
+    spacing: 0;
+}
+
+#toggleSwitch::indicator {
+    width: 44px;
+    height: 24px;
+    border: 2px solid #3a3a3a;
+    border-radius: 12px;
+    background-color: #2a2a2a;
+}
+
+#toggleSwitch::indicator:checked {
+    border-color: #5b8731;
+    background-color: #5b8731;
+}
+
+#toggleSwitch::indicator:disabled {
+    border-color: #222222;
+    background-color: #1a1a1a;
+}
+
+#toggleSwitch::indicator:hover {
+    border-color: #4a4a4a;
+    background-color: #3a3a3a;
+}
+
+#toggleSwitch::indicator:checked:hover {
+    border-color: #7ba751;
+    background-color: #7ba751;
+}
+
+/* ── Banners (info/warning cards) ────────────────── */
+
+#banner {
+    background-color: #1e1e1e;
+    border: 1px solid #4a3a1a;
+    border-radius: 10px;
+}
+
+#bannerIcon {
+    background-color: transparent;
+    font-size: 16px;
+}
+
+#bannerText {
+    background-color: transparent;
+    font-size: 12px;
+    color: #f4a426;
+}
+
+/* Read-only server-running banner */
+#readOnlyBanner, #optionReadOnlyLabel {
+    background-color: #3a2a1a;
+    color: #f4a426;
+    border: 1px solid #5a3a1a;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Info banner — no-world card, diamond accent */
+#infoBanner {
+    background-color: #1a2a2a;
+    border: 1px solid #2dc1d9;
+    border-radius: 10px;
+}
+
+/* ── Progress bar ────────────────────────────────── */
+
+#progressTaskName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+#progressStatus {
+    font-size: 12px;
+    color: #aaaaaa;
+}
+
+#progressDetail {
+    font-size: 11px;
+    color: #888888;
+}
+
+#progressBar {
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 6px;
+    height: 22px;
+    text-align: center;
+}
+
+#progressBar::chunk {
+    background-color: #5b8731;
+    border-radius: 6px;
+}
+
+/* ── Scroll bars ─────────────────────────────────── */
+
+QScrollBar:vertical {
+    background-color: #1a1a1a;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #3a3a3a;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #4a4a4a;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   PAGE-SPECIFIC STYLES
+   ══════════════════════════════════════════════════ */
+
+/* ── Sidebar ─────────────────────────────────────── */
+
+#sidebar {
+    background-color: #141414;
+    border-right: 1px solid #2a2a2a;
+}
+
+#sidebarLogo {
+    color: #5b8731;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 20px 16px 16px 16px;
+}
+
+/* ── Sidebar Brand ───────────────────────────────── */
+
+#sidebarBrand {
+    background-color: transparent;
+}
+
+#sidebarBrandName1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0f0f0;
+    background-color: transparent;
+}
+
+#sidebarBrandName2 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5b8731;
+    background-color: transparent;
+}
+
+#sidebarBtn {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    color: #aaaaaa;
+    font-size: 14px;
+    padding: 12px 18px;
+    text-align: left;
+    min-height: 50px;
+}
+
+#sidebarBtn:hover {
+    background-color: #1f1f1f;
+    color: #d0d0d0;
+}
+
+#sidebarBtn:checked {
+    background-color: #222222;
+    color: #5b8731;
+    font-weight: 600;
+    border-left: 3px solid #5b8731;
+}
+
+/* ── Console page ────────────────────────────────── */
+
+#consoleContent { background-color: transparent; }
+
+#consoleSearch {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: #d0d0d0;
+    font-size: 12px;
+    min-width: 180px;
+}
+#consoleSearch:focus { border-color: #5b8731; }
+
+#consoleOutputFrame {
+    background-color: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+}
+
+#consoleOutput {
+    background-color: transparent;
+    color: #d0d0d0;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+    font-size: 12px;
+    border: none;
+    padding: 8px;
+}
+
+#consoleStoppedOverlay {
+    background-color: rgba(13, 13, 13, 180);
+    color: #888888;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    padding: 20px;
+}
+
+#consoleInputFrame {
+    background-color: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#consoleInput {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #d0d0d0;
+    font-size: 12px;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+}
+#consoleInput:focus { border-color: #5b8731; }
+#consoleInput:disabled {
+    background-color: #1a1a1a;
+    color: #444444;
+    border-color: #222222;
+}
+
+#consoleSplitter::handle {
+    background-color: #2a2a2a;
+    width: 2px;
+}
+
+/* ── Command panel ───────────────────────────────── */
+
+#commandPanel {
+    background-color: #181818;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+}
+
+#cmdSearch {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: #d0d0d0;
+    font-size: 12px;
+    margin: 8px;
+}
+#cmdSearch:focus { border-color: #5b8731; }
+
+#cmdScroll { background-color: transparent; }
+#cmdContent { background-color: transparent; }
+
+#cmdCategory {
+    font-size: 10px;
+    font-weight: 700;
+    color: #5b8731;
+    text-transform: uppercase;
+    padding: 6px 8px 2px 8px;
+    letter-spacing: 1px;
+}
+
+#cmdItem {
+    background-color: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    margin: 1px 0;
+}
+#cmdItem:hover {
+    background-color: #252525;
+    border-color: #5b8731;
+}
+
+#cmdItemName {
+    font-size: 12px;
+    font-weight: 600;
+    color: #d0d0d0;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+}
+
+#cmdItemDesc {
+    font-size: 10px;
+    color: #888888;
+}
+
+/* ── Options page ────────────────────────────────── */
+
+#optionName {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#optionDesc {
+    font-size: 11px;
+    color: #888888;
+}
+
+#optionInput {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #d0d0d0;
+    font-size: 13px;
+}
+#optionInput:focus { border-color: #5b8731; }
+#optionInput:disabled {
+    background-color: #1a1a1a;
+    color: #444444;
+    border-color: #222222;
+}
+
+#optionSpin {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #d0d0d0;
+    font-size: 13px;
+    min-height: 24px;
+}
+#optionSpin:focus { border-color: #5b8731; }
+#optionSpin:disabled {
+    background-color: #1a1a1a;
+    color: #444444;
+    border-color: #222222;
+}
+
+#optionCombo {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: #d0d0d0;
+    font-size: 13px;
+    min-height: 28px;
+}
+#optionCombo:focus { border-color: #5b8731; }
+#optionCombo:disabled {
+    background-color: #1a1a1a;
+    color: #444444;
+    border-color: #222222;
+}
+
+#optionCombo::drop-down { border: none; width: 24px; }
+#optionCombo::down-arrow { image: none; border: none; }
+
+#optionCombo QAbstractItemView {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    color: #d0d0d0;
+    selection-background-color: #2a4a2a;
+    selection-color: #d8f0c8;
+}
+
+#optionSaveNotif {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5b8731;
+    padding: 0 8px;
+}
+
+/* ── Players page ────────────────────────────────── */
+
+#tableStack { background-color: transparent; }
+
+#toggleStatus {
+    font-size: 10px;
+    font-weight: 600;
+    color: #888888;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/* ── Worlds page ─────────────────────────────────── */
+
+#worldsIconFrame {
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+}
+
+#worldsIcon { background-color: transparent; }
+
+#worldsFieldsFrame { background-color: transparent; }
+#worldsFieldRow { background-color: transparent; }
+
+#worldsActionCard {
+    background-color: #181818;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+}
+#worldsActionCard:hover {
+    background-color: #202020;
+    border-color: #3a3a3a;
+}
+
+#worldsActionIcon {
+    background-color: transparent;
+    font-size: 28px;
+    color: #5b8731;
+}
+
+#worldsActionTitle {
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#worldsActionDesc {
+    background-color: transparent;
+    font-size: 10px;
+    color: #888888;
+}
+
+/* ── Installation wizard ─────────────────────────── */
+
+#wizardTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#wizardSubtitle {
+    font-size: 12px;
+    color: #888888;
+    margin-top: 2px;
+}
+
+#wizardInput {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: #d0d0d0;
+    font-size: 13px;
+}
+#wizardInput:focus { border-color: #5b8731; }
+#wizardInput:read-only { color: #888888; }
+
+#wizardEulaLink {
+    font-size: 11px;
+    color: #5b8731;
+    padding-bottom: 4px;
+}
+
+#wizardEulaCheck {
+    spacing: 10px;
+    font-size: 12px;
+    color: #d0d0d0;
+    padding: 2px 0;
+}
+
+#wizardEulaCheck::indicator {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    background-color: #222222;
+}
+
+#wizardEulaCheck::indicator:checked {
+    background-color: #5b8731;
+    border-color: #5b8731;
+}
+
+/* ── About Dialog ─────────────────────────────────── */
+
+#aboutDialog {
+    background-color: #1a1a1a;
+}
+
+#aboutAppName {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f0f0f0;
+    background-color: transparent;
+}
+
+#aboutSlogan {
+    font-size: 11px;
+    color: #aaaaaa;
+    background-color: transparent;
+    line-height: 1.4;
+}
+
+#aboutVersion {
+    font-size: 11px;
+    font-weight: 600;
+    color: #7bc96f;
+    background-color: transparent;
+}
+
+#aboutDescription {
+    font-size: 12px;
+    color: #cccccc;
+    background-color: transparent;
+    line-height: 1.4;
+    max-height: 34px;
+}
+
+#aboutSectionTitle {
+    font-size: 10px;
+    font-weight: 700;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: transparent;
+}
+
+#aboutValue {
+    font-size: 12px;
+    color: #d0d0d0;
+    background-color: transparent;
+}
+
+#aboutLicenseSub {
+    font-size: 11px;
+    color: #888888;
+    background-color: transparent;
+}
+
+#aboutCopyright {
+    font-size: 10px;
+    color: #555555;
+    background-color: transparent;
+}
+
+#aboutSeparator {
+    background-color: #2a2a2a;
+    max-height: 1px;
+}
+
+/* ── Dialogs ─────────────────────────────────────── */
+
+#addPlayerDialog {
+    background-color: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+}
+
+#dialogTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+#dialogInput {
+    background-color: #222222;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #d0d0d0;
+    font-size: 13px;
+}
+#dialogInput:focus { border-color: #5b8731; }

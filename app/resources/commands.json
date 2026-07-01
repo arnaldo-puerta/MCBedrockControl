@@ -1,0 +1,288 @@
+{
+  "Gesti\u00f3n del servidor": [
+    {
+      "command": "stop",
+      "syntax": "stop",
+      "description": "Detiene el servidor de forma segura y guarda el mundo."
+    },
+    {
+      "command": "save hold",
+      "syntax": "save hold",
+      "description": "Bloquea el guardado autom\u00e1tico del mundo para realizar una copia de seguridad."
+    },
+    {
+      "command": "save resume",
+      "syntax": "save resume",
+      "description": "Reanuda el guardado autom\u00e1tico del mundo."
+    },
+    {
+      "command": "save query",
+      "syntax": "save query",
+      "description": "Muestra el estado actual del guardado del mundo."
+    },
+    {
+      "command": "reload",
+      "syntax": "reload",
+      "description": "Recarga los archivos de configuraci\u00f3n y complementos del servidor."
+    }
+  ],
+  "Jugadores": [
+    {
+      "command": "list",
+      "syntax": "list",
+      "description": "Muestra los jugadores conectados actualmente."
+    },
+    {
+      "command": "op",
+      "syntax": "op <jugador>",
+      "description": "Concede permisos de operador a un jugador."
+    },
+    {
+      "command": "deop",
+      "syntax": "deop <jugador>",
+      "description": "Revoca los permisos de operador de un jugador."
+    },
+    {
+      "command": "kick",
+      "syntax": "kick <jugador> [raz\u00f3n]",
+      "description": "Expulsa a un jugador del servidor con una raz\u00f3n opcional."
+    },
+    {
+      "command": "ban",
+      "syntax": "ban <jugador> [raz\u00f3n]",
+      "description": "Bloquea el acceso a un jugador de forma permanente."
+    },
+    {
+      "command": "pardon",
+      "syntax": "pardon <jugador>",
+      "description": "Desbloquea a un jugador previamente baneado."
+    },
+    {
+      "command": "whitelist add",
+      "syntax": "whitelist add <jugador>",
+      "description": "A\u00f1ade un jugador a la lista blanca."
+    },
+    {
+      "command": "whitelist remove",
+      "syntax": "whitelist remove <jugador>",
+      "description": "Elimina un jugador de la lista blanca."
+    },
+    {
+      "command": "whitelist list",
+      "syntax": "whitelist list",
+      "description": "Muestra todos los jugadores en la lista blanca."
+    },
+    {
+      "command": "whitelist on",
+      "syntax": "whitelist on",
+      "description": "Activa la lista blanca (solo jugadores permitidos pueden entrar)."
+    },
+    {
+      "command": "whitelist off",
+      "syntax": "whitelist off",
+      "description": "Desactiva la lista blanca."
+    }
+  ],
+  "Mundo": [
+    {
+      "command": "gamerule",
+      "syntax": "gamerule <regla> [valor]",
+      "description": "Establece o consulta una regla del mundo."
+    },
+    {
+      "command": "difficulty",
+      "syntax": "difficulty <peaceful|easy|normal|hard>",
+      "description": "Cambia la dificultad del servidor."
+    },
+    {
+      "command": "time set",
+      "syntax": "time set <day|night|n\u00famero>",
+      "description": "Establece la hora del mundo."
+    },
+    {
+      "command": "time add",
+      "syntax": "time add <ticks>",
+      "description": "A\u00f1ade ticks al tiempo del mundo."
+    },
+    {
+      "command": "weather",
+      "syntax": "weather <clear|rain|thunder>",
+      "description": "Cambia el clima del mundo."
+    },
+    {
+      "command": "gamemode",
+      "syntax": "gamemode <survival|creative|adventure|spectator> [jugador]",
+      "description": "Cambia el modo de juego de un jugador."
+    },
+    {
+      "command": "tp",
+      "syntax": "tp <jugador> <x> <y> <z>",
+      "description": "Teletransporta a un jugador a las coordenadas indicadas."
+    },
+    {
+      "command": "spawnpoint",
+      "syntax": "spawnpoint <jugador> [x] [y] [z]",
+      "description": "Establece el punto de aparici\u00f3n de un jugador."
+    },
+    {
+      "command": "setworldspawn",
+      "syntax": "setworldspawn [x] [y] [z]",
+      "description": "Establece el punto de aparici\u00f3n global del mundo."
+    }
+  ],
+  "Automatizaci\u00f3n": [
+    {
+      "command": "say",
+      "syntax": "say <mensaje>",
+      "description": "Env\u00eda un mensaje a todos los jugadores del servidor."
+    },
+    {
+      "command": "tell",
+      "syntax": "tell <jugador> <mensaje>",
+      "description": "Env\u00eda un mensaje privado a un jugador espec\u00edfico."
+    },
+    {
+      "command": "execute",
+      "syntax": "execute <origen> <posici\u00f3n> <comando>",
+      "description": "Ejecuta un comando desde la perspectiva de otra entidad."
+    },
+    {
+      "command": "function",
+      "syntax": "function <namespace:archivo>",
+      "description": "Ejecuta una funci\u00f3n de comandos desde un archivo .mcfunction."
+    },
+    {
+      "command": "fill",
+      "syntax": "fill <x1> <y1> <z1> <x2> <y2> <z2> <bloque>",
+      "description": "Llena un \u00e1rea con un bloque espec\u00edfico."
+    },
+    {
+      "command": "setblock",
+      "syntax": "setblock <x> <y> <z> <bloque>",
+      "description": "Coloca un bloque en las coordenadas indicadas."
+    },
+    {
+      "command": "clone",
+      "syntax": "clone <x1> <y1> <z1> <x2> <y2> <z2> <x> <y> <z>",
+      "description": "Copia los bloques de un \u00e1rea a otra."
+    },
+    {
+      "command": "summon",
+      "syntax": "summon <entidad> [x] [y] [z]",
+      "description": "Genera una entidad en las coordenadas especificadas."
+    }
+  ],
+  "Teleportaci\u00f3n y estructura": [
+    {
+      "command": "structure save",
+      "syntax": "structure save <nombre> <x1> <y1> <z1> <x2> <y2> <z2>",
+      "description": "Guarda una estructura en un archivo."
+    },
+    {
+      "command": "structure load",
+      "syntax": "structure load <nombre> <x> <y> <z>",
+      "description": "Carga una estructura guardada en el mundo."
+    },
+    {
+      "command": "structure delete",
+      "syntax": "structure delete <nombre>",
+      "description": "Elimina una estructura guardada."
+    }
+  ],
+  "Efectos": [
+    {
+      "command": "effect",
+      "syntax": "effect <jugador> <efecto> [duraci\u00f3n] [intensidad]",
+      "description": "Aplica un efecto de estado a un jugador."
+    },
+    {
+      "command": "effect clear",
+      "syntax": "effect clear <jugador> [efecto]",
+      "description": "Elimina todos los efectos de un jugador o uno espec\u00edfico."
+    },
+    {
+      "command": "enchant",
+      "syntax": "enchant <jugador> <encantamiento> [nivel]",
+      "description": "Encanta el objeto que tiene un jugador en la mano."
+    }
+  ],
+  "Puntuaci\u00f3n y tablas": [
+    {
+      "command": "scoreboard objectives add",
+      "syntax": "scoreboard objectives add <nombre> <criterio> [t\u00edtulo]",
+      "description": "Crea un nuevo objetivo en el marcador."
+    },
+    {
+      "command": "scoreboard objectives remove",
+      "syntax": "scoreboard objectives remove <nombre>",
+      "description": "Elimina un objetivo del marcador."
+    },
+    {
+      "command": "scoreboard objectives list",
+      "syntax": "scoreboard objectives list",
+      "description": "Muestra todos los objetivos del marcador."
+    },
+    {
+      "command": "scoreboard players set",
+      "syntax": "scoreboard players set <jugador> <objetivo> <puntos>",
+      "description": "Establece la puntuaci\u00f3n de un jugador en un objetivo."
+    },
+    {
+      "command": "scoreboard players add",
+      "syntax": "scoreboard players add <jugador> <objetivo> <puntos>",
+      "description": "A\u00f1ade puntos a la puntuaci\u00f3n de un jugador."
+    },
+    {
+      "command": "scoreboard players remove",
+      "syntax": "scoreboard players remove <jugador> <objetivo> <puntos>",
+      "description": "Resta puntos a la puntuaci\u00f3n de un jugador."
+    },
+    {
+      "command": "scoreboard players list",
+      "syntax": "scoreboard players list [objetivo]",
+      "description": "Muestra los jugadores registrados en el marcador."
+    }
+  ],
+  "T\u00e9cnicos": [
+    {
+      "command": "tickingarea add",
+      "syntax": "tickingarea add <x1> <y1> <z1> <x2> <y2> <z2> [nombre]",
+      "description": "Crea un \u00e1rea de tick que se mantiene cargada siempre."
+    },
+    {
+      "command": "tickingarea remove",
+      "syntax": "tickingarea remove <nombre|posici\u00f3n>",
+      "description": "Elimina un \u00e1rea de tick."
+    },
+    {
+      "command": "tickingarea list",
+      "syntax": "tickingarea list",
+      "description": "Muestra todas las \u00e1reas de tick activas."
+    },
+    {
+      "command": "clear",
+      "syntax": "clear [jugador] [objeto] [datos] [cantidad]",
+      "description": "Limpia el inventario de un jugador."
+    },
+    {
+      "command": "give",
+      "syntax": "give <jugador> <objeto> [cantidad] [datos]",
+      "description": "Entrega un objeto a un jugador."
+    },
+    {
+      "command": "testfor",
+      "syntax": "testfor <jugador|entidad>",
+      "description": "Comprueba si una entidad existe en el mundo."
+    },
+    {
+      "command": "testforblock",
+      "syntax": "testforblock <x> <y> <z> <bloque> [datos]",
+      "description": "Comprueba si hay un bloque espec\u00edfico en las coordenadas."
+    },
+    {
+      "command": "me",
+      "syntax": "me <acci\u00f3n>",
+      "description": "Env\u00eda un mensaje en tercera persona al chat."
+    }
+  ]
+}
