@@ -13,6 +13,10 @@
 
 </div>
 
+![GitHub release](https://img.shields.io/github/v/release/arnaldo-puerta/MCBedrockControl)
+![GitHub Downloads](https://img.shields.io/github/downloads/arnaldo-puerta/MCBedrockControl/total)
+![License](https://img.shields.io/github/license/arnaldo-puerta/MCBedrockControl)
+
 ---
 
 ## 📖 Descripción
