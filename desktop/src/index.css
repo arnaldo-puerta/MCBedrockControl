@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "@xterm/xterm/css/xterm.css";
+
+@theme {
+  --color-base: #151515;
+  --color-sidebar: #111111;
+  --color-panel: #1e1e1e;
+  --color-line: #2c2c2c;
+  --color-ink: #f2f2f2;
+  --color-muted: #9a9a9a;
+  --color-grass: #4d8a2f;
+  --color-grass-light: #7bc96f;
+  --color-amber: #d4a843;
+  --color-danger: #c94f4f;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  user-select: none;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-grass-light);
+  outline-offset: 2px;
+}
+
+.xterm-viewport {
+  background-color: transparent !important;
+}
