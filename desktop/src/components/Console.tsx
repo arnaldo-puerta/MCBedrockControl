@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { FitAddon } from "@xterm/addon-fit";
 import { Terminal } from "@xterm/xterm";
 import type { LogLevel, LogLine, ServerState } from "../lib/api";
+import { PageHeader } from "../lib/pages";
 
 const ANSI: Record<LogLevel, string> = {
   info: "\x1b[38;2;123;201;111m",
@@ -89,7 +90,7 @@ export function Console({ state, visible, subscribeLogs, onSend }: Props) {
 
   return (
     <section className="flex h-full flex-col gap-4 p-6">
-      <h1 className="text-2xl font-semibold">Consola</h1>
+      <PageHeader page="console" />
       <div className="min-h-0 flex-1 rounded-xl border border-line bg-panel p-3 select-text">
         <div ref={host} className="h-full" />
       </div>

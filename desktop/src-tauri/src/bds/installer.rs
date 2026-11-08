@@ -4,7 +4,6 @@
 //! renamed into place once complete, so a failed or cancelled install leaves
 //! nothing half-finished behind.
 
-use std::fs::File;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -14,7 +13,7 @@ use reqwest::{Client, Url};
 use serde::{Deserialize, Serialize};
 use tokio::io::AsyncWriteExt;
 
-use super::EXECUTABLE;
+use super::{EXECUTABLE, archive};
 
 // Both hosts serve the same undocumented list; the second is a fallback.
 const LINK_ENDPOINTS: [&str; 2] = [
@@ -64,7 +63,7 @@ struct Link {
     download_url: String,
 }
 
-fn cancelled() -> String {
+pub(crate) fn cancelled() -> String {
     "Instalación cancelada.".to_owned()
 }
 
@@ -98,7 +97,7 @@ fn parse_release(json: &str) -> Result<Release, String> {
     Ok(Release { url, version })
 }
 
-fn client() -> Result<Client, String> {
+pub(crate) fn client() -> Result<Client, String> {
     Client::builder()
         .user_agent(USER_AGENT)
         .connect_timeout(Duration::from_secs(15))
@@ -107,7 +106,7 @@ fn client() -> Result<Client, String> {
         .map_err(|e| format!("No se pudo preparar la descarga: {e}"))
 }
 
-async fn latest_release(client: &Client) -> Result<Release, String> {
+pub(crate) async fn latest_release(client: &Client) -> Result<Release, String> {
     let mut last_error = String::new();
     for endpoint in LINK_ENDPOINTS {
         let body = async {
@@ -137,7 +136,7 @@ pub fn check_target(target: &Path) -> Result<(), String> {
     }
 }
 
-async fn download(
+pub(crate) async fn download(
     client: &Client,
     url: Url,
     destination: &Path,
@@ -179,46 +178,16 @@ async fn download(
     Ok(())
 }
 
-fn extract(
+pub(crate) fn extract(
     archive: &Path,
     destination: &Path,
     cancel: &AtomicBool,
     report: impl Fn(Progress),
 ) -> Result<(), String> {
-    let invalid = |e: zip::result::ZipError| format!("El archivo descargado no es válido: {e}");
-    let write_failed = |e: std::io::Error| format!("No se pudo extraer el servidor: {e}");
-
-    let file = File::open(archive).map_err(write_failed)?;
-    let mut zip = zip::ZipArchive::new(file).map_err(invalid)?;
-    let total = zip.len() as u64;
-    let mut last_report = Instant::now();
-
-    for index in 0..zip.len() {
-        if cancel.load(Ordering::Relaxed) {
-            return Err(cancelled());
-        }
-        let mut entry = zip.by_index(index).map_err(invalid)?;
-        let relative = entry
-            .enclosed_name()
-            .ok_or_else(|| format!("Ruta insegura en el archivo: {}", entry.name()))?;
-        let path = destination.join(relative);
-
-        if entry.is_dir() {
-            std::fs::create_dir_all(&path).map_err(write_failed)?;
-        } else {
-            if let Some(parent) = path.parent() {
-                std::fs::create_dir_all(parent).map_err(write_failed)?;
-            }
-            let mut output = File::create(&path).map_err(write_failed)?;
-            std::io::copy(&mut entry, &mut output).map_err(write_failed)?;
-        }
-
-        if last_report.elapsed() >= PROGRESS_INTERVAL {
-            last_report = Instant::now();
-            report(Progress { phase: Phase::Extract, done: index as u64 + 1, total });
-        }
-    }
-    report(Progress { phase: Phase::Extract, done: total, total });
+    archive::extract(archive, destination, cancel, |done, total| {
+        report(Progress { phase: Phase::Extract, done, total });
+    })
+    .map_err(|e| if e == archive::CANCELLED { cancelled() } else { e })?;
 
     if !destination.join(EXECUTABLE).is_file() {
         return Err(format!("El archivo descargado no contiene {EXECUTABLE}."));
@@ -288,6 +257,7 @@ async fn install_into(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::fs::File;
     use std::io::Write;
     use zip::write::SimpleFileOptions;
 

@@ -14,7 +14,7 @@ pub struct ServerInfo {
     pub max_players: String,
 }
 
-fn parse(text: &str) -> HashMap<&str, &str> {
+pub(crate) fn parse(text: &str) -> HashMap<&str, &str> {
     text.lines()
         .map(str::trim)
         .filter(|line| !line.starts_with('#'))
@@ -64,11 +64,19 @@ fn with_value(text: &str, key: &str, value: &str) -> String {
 }
 
 pub fn write_value(server_dir: &Path, key: &str, value: &str) -> Result<(), String> {
+    write_values(server_dir, &[(key, value.to_owned())])
+}
+
+/// Changes several values in one write, so a crash can't apply only some.
+pub fn write_values(server_dir: &Path, values: &[(&str, String)]) -> Result<(), String> {
     let failed = |e: std::io::Error| format!("No se pudo guardar server.properties: {e}");
     let target = server_dir.join("server.properties");
-    let text = std::fs::read_to_string(&target).map_err(failed)?;
+    let mut text = std::fs::read_to_string(&target).map_err(failed)?;
+    for (key, value) in values {
+        text = with_value(&text, key, value);
+    }
     let temp = target.with_extension("properties.tmp");
-    std::fs::write(&temp, with_value(&text, key, value)).map_err(failed)?;
+    std::fs::write(&temp, text).map_err(failed)?;
     std::fs::rename(&temp, &target).map_err(failed)
 }
 

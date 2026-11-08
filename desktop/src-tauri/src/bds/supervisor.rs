@@ -86,6 +86,7 @@ struct Inner {
     pending: Vec<LogLine>,
     next_seq: u64,
     stdin: Option<mpsc::UnboundedSender<String>>,
+    watchers: Vec<mpsc::UnboundedSender<String>>,
     kill: Option<oneshot::Sender<()>>,
     exited: Option<watch::Receiver<bool>>,
 }
@@ -125,7 +126,12 @@ impl Shared {
 
     fn ingest(&self, text: String) {
         let event = parser::parse(&text);
-        self.push_line(&mut self.lock(), text);
+        {
+            let mut inner = self.lock();
+            // A dropped receiver means its watcher is done.
+            inner.watchers.retain(|watcher| watcher.send(text.clone()).is_ok());
+            self.push_line(&mut inner, text);
+        }
         match event {
             Some(ServerEvent::Ready) => {
                 if self.lock().state == ServerState::Starting {
@@ -190,6 +196,7 @@ impl Supervisor {
             pending: Vec::new(),
             next_seq: 0,
             stdin: None,
+            watchers: Vec::new(),
             kill: None,
             exited: None,
         };
@@ -302,6 +309,26 @@ impl Supervisor {
     pub async fn restart(&self, server_dir: &Path) -> Result<(), String> {
         self.stop().await;
         self.start(server_dir).await
+    }
+
+    /// Every line the server prints from now on, until the receiver is dropped.
+    pub fn watch_lines(&self) -> mpsc::UnboundedReceiver<String> {
+        let (tx, rx) = mpsc::unbounded_channel();
+        self.shared.lock().watchers.push(tx);
+        rx
+    }
+
+    /// Like [`Self::send_command`], but not echoed to the console, for the
+    /// app's own housekeeping commands.
+    pub fn send_quietly(&self, command: &str) -> Result<(), String> {
+        let inner = self.shared.lock();
+        if inner.state != ServerState::Running {
+            return Err("El servidor no está encendido.".to_owned());
+        }
+        let stdin = inner.stdin.clone().ok_or("El servidor no acepta comandos.")?;
+        stdin
+            .send(command.to_owned())
+            .map_err(|_| "El servidor no acepta comandos.".to_owned())
     }
 
     pub fn send_command(&self, command: &str) -> Result<(), String> {

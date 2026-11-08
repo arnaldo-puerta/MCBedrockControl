@@ -1,4 +1,18 @@
+import {
+  Clock,
+  Cpu,
+  Map,
+  MemoryStick,
+  Network,
+  Play,
+  RotateCw,
+  Square,
+  Tag,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import type { AppSnapshot, ServerState } from "../lib/api";
+import { PageHeader } from "../lib/pages";
 
 const STATUS: Record<ServerState, { label: string; dot: string }> = {
   stopped: { label: "Detenido", dot: "bg-muted" },
@@ -15,10 +29,18 @@ function formatUptime(totalSecs: number) {
   return [hours, minutes, seconds].map((n) => String(n).padStart(2, "0")).join(":");
 }
 
-function Card({ label, value, detail }: { label: string; value: string; detail?: string }) {
+function Card({ icon: Icon, label, value, detail }: {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  detail?: string;
+}) {
   return (
     <div className="min-w-0 rounded-xl border border-line bg-panel p-4">
-      <p className="text-xs text-muted">{label}</p>
+      <p className="flex items-center gap-1.5 text-xs text-muted">
+        <Icon className="size-3.5" aria-hidden />
+        {label}
+      </p>
       <p className="mt-1 truncate text-lg font-semibold" title={value}>{value}</p>
       {detail && <p className="mt-0.5 text-xs text-muted">{detail}</p>}
     </div>
@@ -33,7 +55,8 @@ interface Props {
   onChangeServer: () => void;
 }
 
-const ACTION = "rounded-lg px-4 py-2.5 text-sm font-semibold hover:brightness-110 disabled:opacity-40";
+const ACTION =
+  "flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold hover:brightness-110 disabled:opacity-40";
 
 export function Dashboard({ snapshot, onStart, onStop, onRestart, onChangeServer }: Props) {
   const { info, version, server } = snapshot;
@@ -44,11 +67,7 @@ export function Dashboard({ snapshot, onStart, onStop, onRestart, onChangeServer
 
   return (
     <section className="space-y-4 p-6">
-      <header className="flex items-start gap-4">
-        <div className="min-w-0 flex-1">
-          <h1 className="text-2xl font-semibold">{info.name || "Servidor"}</h1>
-          <p className="mt-1 truncate text-sm text-muted">{snapshot.serverPath}</p>
-        </div>
+      <PageHeader page="server" title={info.name || "Servidor"}>
         <button
           onClick={onChangeServer}
           disabled={!idle}
@@ -56,18 +75,24 @@ export function Dashboard({ snapshot, onStart, onStop, onRestart, onChangeServer
         >
           Cambiar o instalar
         </button>
-      </header>
+      </PageHeader>
+      <p className="truncate text-xs text-muted" title={snapshot.serverPath ?? undefined}>
+        {snapshot.serverPath}
+      </p>
 
       <div className="flex flex-wrap items-center gap-3 rounded-xl border border-line bg-panel p-4">
         <span className={`size-3 rounded-full ${status.dot}`} />
         <span role="status" className="mr-auto font-semibold">{status.label}</span>
         <button onClick={onStart} disabled={!idle} className={`${ACTION} bg-grass`}>
+          <Play className="size-4" aria-hidden />
           Iniciar
         </button>
         <button onClick={onRestart} disabled={!live} className={`${ACTION} bg-line`}>
+          <RotateCw className="size-4" aria-hidden />
           Reiniciar
         </button>
         <button onClick={onStop} disabled={!live} className={`${ACTION} bg-line`}>
+          <Square className="size-4" aria-hidden />
           Detener
         </button>
       </div>
@@ -79,17 +104,18 @@ export function Dashboard({ snapshot, onStart, onStop, onRestart, onChangeServer
       )}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Card label="Versión" value={version ?? "—"} />
-        <Card label="Puerto" value={info.port || "—"} />
-        <Card label="Mundo" value={info.world || "—"} />
-        <Card label="Jugadores" value={`${players.length} / ${info.maxPlayers || "—"}`} />
-        <Card label="CPU" value={`${stats.cpuPercent.toFixed(1)} %`} />
+        <Card icon={Tag} label="Versión" value={version ?? "—"} />
+        <Card icon={Network} label="Puerto" value={info.port || "—"} />
+        <Card icon={Map} label="Mundo" value={info.world || "—"} />
+        <Card icon={Users} label="Jugadores" value={`${players.length} / ${info.maxPlayers || "—"}`} />
+        <Card icon={Cpu} label="CPU" value={`${stats.cpuPercent.toFixed(1)} %`} />
         <Card
+          icon={MemoryStick}
           label="RAM"
           value={`${stats.memoryMb.toLocaleString("es")} MB`}
           detail={`${stats.memoryPercent.toFixed(1)} % del sistema`}
         />
-        <Card label="Tiempo activo" value={idle ? "—" : formatUptime(stats.uptimeSecs)} />
+        <Card icon={Clock} label="Tiempo activo" value={idle ? "—" : formatUptime(stats.uptimeSecs)} />
       </div>
 
       <div className="rounded-xl border border-line bg-panel p-4">

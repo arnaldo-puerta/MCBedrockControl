@@ -2,28 +2,17 @@
 
 <div align="center">
 
-<img src="app/resources/images/logo.png" width="120">
+<img src="desktop/src-tauri/icons/128x128@2x.png" width="120">
 
-### Administrador gráfico para servidores dedicados de Minecraft Bedrock Edition.
+### Administra tu servidor de Minecraft Bedrock desde una app sencilla para Windows.
 
-![GitHub release](https://img.shields.io/github/v/release/arnaldo-puerta/MCBedrockControl)
-![GitHub Downloads](https://img.shields.io/github/downloads/arnaldo-puerta/MCBedrockControl/total)
-![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
-![PySide6](https://img.shields.io/badge/PySide6-Qt-green)
+![GitHub release](https://img.shields.io/github/v/release/arnaldo-puerta/MCBedrockControl?include_prereleases)
 ![Windows](https://img.shields.io/badge/Windows-10%2F11-blue)
-![Version](https://img.shields.io/badge/Version-v1.0.0-success)
+![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB?logo=tauri)
+![Rust](https://img.shields.io/badge/Rust-backend-orange?logo=rust)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 
 </div>
-
----
-
-## 📖 Descripción
-
-MC Bedrock Control es una aplicación de escritorio desarrollada en Python que facilita la administración de servidores dedicados de Minecraft Bedrock Edition mediante una interfaz gráfica moderna.
-
-El objetivo del proyecto es ofrecer una alternativa sencilla para usuarios que no desean administrar el servidor únicamente mediante archivos de configuración o la consola.
-
----
 
 > **⚠️ Aviso**
 >
@@ -31,234 +20,83 @@ El objetivo del proyecto es ofrecer una alternativa sencilla para usuarios que n
 
 ---
 
-# ✨ Características
+## ✨ Qué puedes hacer
 
-- 🚀 Instalación del servidor desde el ZIP oficial.
-- ▶️ Iniciar, detener y reiniciar el servidor.
-- 💻 Consola en tiempo real.
-- 🌍 Importar y exportar mundos.
-- 📦 Gestión de Resource Packs.
-- 🧩 Gestión de Behavior Packs.
-- 👥 Administración de jugadores.
-- ⚙️ Edición de server.properties.
-- 🔄 Actualización del servidor.
-- 📊 Dashboard con información del servidor.
-- ❤️ Interfaz inspirada en Minecraft.
+| Sección | Para qué sirve |
+|---|---|
+| 🖥️ **Servidor** | Iniciar, detener y reiniciar; ver jugadores, CPU, RAM y tiempo activo |
+| 💻 **Consola** | Ver lo que pasa en tiempo real y escribir comandos |
+| 👥 **Jugadores** | Lista de permitidos y expulsar jugadores |
+| 🌐 **Conexiones** | Que tus amigos entren desde fuera de tu casa con Playit.gg |
+| 🌍 **Mundos** | Importar, exportar, cambiar de mundo y borrar |
+| 📦 **Packs y addons** | Añadir texturas y addons (.mcpack, .mcaddon, .zip) y activarlos |
+| 🗂️ **Copias de seguridad** | Copias de seguridad sin apagar el servidor; también automáticas |
+| ⚙️ **Configuración** | Nombre del servidor y del mundo, modo de juego, dificultad y más |
+| ⬆️ **Actualización** | Detecta versiones nuevas y actualiza sin perder mundos ni packs |
 
----
-
-# 🎯 Funciones principales
-
-✔ Instalar un servidor Bedrock desde el ZIP oficial.
-
-✔ Administrar mundos (.mcworld).
-
-✔ Administrar Resource Packs y Behavior Packs.
-
-✔ Editar server.properties mediante una interfaz gráfica.
-
-✔ Administrar jugadores y lista de permitidos.
-
-✔ Ejecutar comandos desde una consola integrada.
-
-✔ Actualizar fácilmente el servidor sin perder la configuración.
+La app descarga el servidor oficial por ti: no hace falta buscar ningún ZIP.
 
 ---
 
-## 📷 Capturas
+## 📦 Instalación
 
-<p align="center">
-
-<img src="docs/screenshots/dashboard.png" width="48%">
-<img src="docs/screenshots/console.png" width="48%">
-
-<img src="docs/screenshots/options.png" width="48%">
-<img src="docs/screenshots/players.png" width="48%">
-
-<img src="docs/screenshots/packs.png" width="48%">
-<img src="docs/screenshots/worlds.png" width="48%">
-
-<img src="docs/screenshots/update.png" width="48%">
-
-</p>
-
----
-
-# 🛠 Tecnologías
-
-| Tecnología | Uso |
-|------------|-----|
-| Python 3.14 | Lenguaje principal |
-| PySide6 | Interfaz gráfica |
-| QtAwesome | Iconografía |
-| PyInstaller | Distribución |
-| psutil | Monitoreo CPU/RAM |
-| zipfile | Gestión de archivos ZIP |
-
----
-
-# 📋 Requisitos
-
-- Windows 10 o Windows 11
-- Servidor oficial de Minecraft Bedrock Edition
-- No requiere Python instalado
-
----
-
-# 📦 Instalación
-
-## Descargar la última versión
-
-Dirígete a:
-
-(Releases de GitHub)
-
-Descarga:
-
-```
-MCBedrockControl.zip
-```
-
-Extrae la carpeta y ejecuta:
-
-```
-MCBedrockControl.exe
-```
-
-No es necesario instalar Python.
-
----
-
-# 🚀 Primer uso
-
-1. Ejecuta la aplicación.
-2. Selecciona el ZIP oficial del servidor Bedrock.
-3. Espera a que finalice la instalación.
+1. Ve a [Releases](https://github.com/arnaldo-puerta/MCBedrockControl/releases).
+2. Descarga `MC Bedrock Control_..._x64-setup.exe` y ejecútalo.
+3. Abre la app, elige una carpeta y pulsa **Instalar**.
 4. Pulsa **Iniciar**.
-5. Administra el servidor desde la interfaz.
+
+Requisitos: Windows 10 u 11 (64 bits).
 
 ---
 
-# 📂 Estructura del proyecto
+## 🛠 Desarrollo
+
+Necesitas [Node.js](https://nodejs.org/) y [Rust](https://rustup.rs/).
+
+```powershell
+cd desktop
+npm.cmd install
+npm.cmd run tauri dev
+```
+
+Crear el instalador:
+
+```powershell
+npm.cmd run tauri build
+```
+
+Pruebas:
+
+```powershell
+cd src-tauri
+cargo build --examples
+cargo test
+```
+
+### Estructura
 
 ```text
-app/
- ├── core/
- ├── resources/
- ├── ui/
- └── main.py
+desktop/
+ ├── src/                 Interfaz (React + TypeScript + Tailwind)
+ │   ├── components/      Una página por sección
+ │   └── lib/             API, estado y utilidades
+ └── src-tauri/           Backend (Rust)
+     ├── src/bds/         Servidor: proceso, mundos, copias, packs, actualización
+     ├── src/connect.rs   Integración con Playit.gg
+     └── tests/           Pruebas con un servidor simulado
 ```
 
 ---
 
-# 🔮 Hoja de ruta
+## 📄 Licencia
 
-## Versión 1.0
+Este proyecto se distribuye bajo la **MC Bedrock Control License v1.0**. Consulta el archivo [LICENSE](LICENSE).
 
-- [x] Instalación del servidor
-- [x] Consola
-- [x] Gestión de mundos
-- [x] Gestión de jugadores
-- [x] Gestión de packs
-- [x] Dashboard
-- [x] Actualización del servidor
-
-## Versión 2.0
-
-- [ ] Descarga automática del servidor
-- [ ] Integración con Playit.gg
-- [ ] Copias de seguridad automáticas
-- [ ] Múltiples servidores
-- [ ] Actualizador automático
-- [ ] Estadísticas avanzadas
-
----
-
-# ❓ Preguntas frecuentes
-
-### ¿Necesito instalar Python?
-
-No.
-
----
-
-### ¿Necesito instalar Java?
-
-No.
-
----
-
-### ¿Puedo usar cualquier servidor Bedrock?
-
-Sí, siempre que sea el ZIP oficial.
-
----
-
-### ¿Funciona en Linux?
-
-Actualmente no.
-
----
-
-### ¿Funciona en macOS?
-
-No por el momento.
-
----
-
-# ⚠ Problemas conocidos
-
-- Actualmente solo es compatible con Windows.
-- La descarga automática del servidor llegará en una versión futura.
-- El acceso remoto mediante Playit.gg está previsto para la versión 2.0.
-
----
-
-# 🤝 Contribuciones
-
-Las contribuciones son bienvenidas.
-
-Puedes:
-
-- Reportar errores.
-- Abrir Pull Requests.
-- Proponer nuevas funciones.
-- Mejorar la documentación.
-
----
-
-# 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia:
-
-**MC Bedrock Control License v1.0**
-
-Consulta el archivo **LICENSE** para más información.
-
----
-
-# 👨‍💻 Autor
+## 👨‍💻 Autor
 
 **Arnaldo Puerta**
 
-Desarrollador de MC Bedrock Control.
-
----
-
-## Versión 1.1
-
-- [ ] Mejoras de rendimiento
-- [ ] Corrección de errores
-- [ ] Mejoras en la interfaz
-- [ ] Optimización de la consola
-
----
-
----
-
 <div align="center">
-
-Desarrollado con ❤️ usando Python y Qt.
 
 Si el proyecto te resulta útil, considera darle una ⭐ en GitHub.
 

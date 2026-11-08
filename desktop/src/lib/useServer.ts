@@ -88,5 +88,5 @@ export function useServer() {
     [adopt, run],
   );
 
-  return { snapshot, error, run, selectFolder, install, subscribeLogs };
+  return { snapshot, error, run, adopt, selectFolder, install, subscribeLogs };
 }

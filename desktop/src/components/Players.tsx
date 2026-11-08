@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { api, type AllowList, type Player, type ServerState } from "../lib/api";
+import { PageHeader } from "../lib/pages";
 
 const SMALL_BUTTON = "rounded-lg bg-line px-3 py-1.5 text-sm hover:brightness-125 disabled:opacity-40";
 
@@ -31,12 +32,7 @@ export function Players({ state, players, run }: Props) {
 
   return (
     <section className="space-y-4 p-6">
-      <header>
-        <h1 className="text-2xl font-semibold">Jugadores</h1>
-        <p className="mt-1 text-sm text-muted">
-          Decide quién puede entrar. Los cambios se aplican al momento.
-        </p>
-      </header>
+      <PageHeader page="players" />
 
       <div className="rounded-xl border border-line bg-panel p-4">
         <h2 className="text-sm font-semibold">Jugadores conectados</h2>
